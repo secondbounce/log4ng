@@ -12,12 +12,28 @@ export class Level {
 
   constructor(public readonly value: number,
               public readonly name: string,
-              public displayName: string) {
-    Level.levels[name.toLowerCase()] = this;
+              private _displayName: string) {
+    if (value == null) {    /* Inexact so it will also catch undefined values */
+      throw new Error(`A numeric value must be specified for 'value'`);
+    }
+
+    if (name == null /* Inexact so it will also catch undefined values */ || name.length === 0) {
+      throw new Error(`A non-null, non-empty string value must be specified for 'name'`);
+    }
+
+    this.displayName = _displayName;
+
+    const key: string = name.toLowerCase();
+    const level: Level = Level.levels[key];
+    if (level) {
+      throw new Error(`A level has already been defined with the name '${key}'`);
+    }
+
+    Level.levels[key] = this;
   }
 
   private static initDictionary(): { [key: string]: Level } {
-    return {};
+    return Object.create(null);   /* Use null prototype to ensure there are no default keys */
   }
 
   public static getLevel(levelName: string): Level {
@@ -29,5 +45,16 @@ export class Level {
     }
 
     return level || null;
+  }
+
+  public get displayName(): string {
+    return this._displayName;
+  }
+  public set displayName(displayName: string) {
+    if (displayName == null) {    /* Inexact so it will also catch undefined values */
+      throw new Error(`A string value must be specified for 'displayName'`);
+    }
+
+    this._displayName = displayName;
   }
 }
