@@ -11,7 +11,7 @@ import { LogServiceConfig } from './log-service-config';
 export class LogService {
   private loggers: { [key: string]: Logger } = {};
   private appenders: { [key: string]: Appender } = {};
-  public loggerConfigs: { [key: string]: LoggerConfig } = {};
+  private loggerConfigs: { [key: string]: LoggerConfig } = {};
 
   constructor(injector: Injector,
               config: LogServiceConfig) {
