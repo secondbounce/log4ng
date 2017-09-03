@@ -1,14 +1,17 @@
 {
   "name": "@log4ng/log4ng",
-  "version": "1.0.0",
-  "description": "Library QuickStart package.json from the documentation, supplemented with testing support",
+  "version": "0.1.0",
+  "description": "A Typescript logging framework for Angular project",
   "main": "./bundles/log4ng.umd.js",
   "module": "./log4ng.es5.js",
   "es2015": "./log4ng.js",
   "typings": "./log4ng.d.ts",
   "author": "",
   "license": "MIT",
-  "repository": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/secondbounce/log4ng.git"
+  },
   "engines": {
     "node": ">= 6.9.0",
     "npm": ">= 3.0.0"
