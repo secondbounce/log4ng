@@ -30,18 +30,13 @@ describe('LogService', () => {
     TestBed.configureTestingModule({
       providers: [
         LogService,
+// TODO: use mock console service so output can be tested
         { provide: consoleAppenderToken, useClass: ConsoleAppender },
+// TODO: create additional mock appender type for testing??
         { provide: LogServiceConfig, useValue: logServiceConfig },
       ]
     });
   });
 
-  it('should create service', inject([LogService], (service: LogService) => {
-    expect(service).toBeTruthy();
-  }));
 
-// TODO: exercise the log service
-  // it('should return 42 from getMeaning', inject([LogService], (service: LogService) => {
-  //   expect(service.getMeaning()).toBe(42);
-  // }));
 });
