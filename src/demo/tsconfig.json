@@ -6,7 +6,7 @@
     "declaration": false,
     "emitDecoratorMetadata": true,
     "paths": {
-      "log4ng": [
+      "@log4ng/log4ng": [
         "../lib"
       ]
     }
