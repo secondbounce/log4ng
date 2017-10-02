@@ -1,7 +1,11 @@
-
-export { Logger } from './src/logger';
-export { LogService } from './src/log.service';
 export { Log4ngModule } from './src/log4ng.module';
+export { LogService } from './src/log.service';
 export { LogServiceConfig } from './src/log-service-config';
+export { Logger } from './src/logger';
+export { LoggingEvent } from './src/logging-event';
+export { Level } from './src/level';
+export { Appender } from './src/appenders/appender';
+export { AppenderConfig } from './src/appenders/appender-config';
+export { ConsoleService } from './src/console.service';
 export { ConsoleAppender, consoleAppenderToken } from './src/appenders/console-appender';
 export { ConsoleAppenderConfig } from './src/appenders/console-appender-config';
