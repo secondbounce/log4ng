@@ -1,6 +1,5 @@
 import { AppenderConfig } from './appender-config';
 
+// tslint:disable-next-line:no-empty-interface
 export interface ConsoleAppenderConfig extends AppenderConfig {
-// TODO: just a dummy property at the moment, just so we have an example of an appender-specific config
-  foo: string;
 }
