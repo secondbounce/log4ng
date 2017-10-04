@@ -3,7 +3,7 @@ module.exports = function (config) {
   // Generic Karma Configuration
   karmaConf(config);
 
-  //Extended Configuration for Karma Coverage Reports
+  // Extended Configuration for Karma Coverage Reports
   config.set({
     plugins: [
       require('karma-jasmine'),
@@ -15,8 +15,8 @@ module.exports = function (config) {
     preprocessors: {
       './src/lib/**/!(*spec).js': 'coverage'
     },
+    browsers: ['Chrome'],
     reporters: ['progress', 'kjhtml', 'coverage', 'remap-coverage'],
-
     coverageReporter: {
       type: 'in-memory'
     },

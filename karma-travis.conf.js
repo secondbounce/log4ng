@@ -11,6 +11,8 @@ module.exports = function (config) {
       require('karma-firefox-launcher'),
       require('karma-jasmine-html-reporter')
     ],
-    browsers: ['Chrome', 'Firefox']
+    autoWatch: false,
+    browsers: ['Chrome', 'Firefox'],
+    singleRun: true
   })
 }
