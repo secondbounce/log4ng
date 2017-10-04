@@ -3,23 +3,25 @@ import { LoggingEvent } from '../logging-event';
 
 export abstract class Appender {
   private _name: string;
-  // public readonly threshold: Level;
-  private _layoutPattern: string;
-  // Public property	ErrorHandler      // Gets or sets the IErrorHandler for this appender.
-  // Public property	FilterHead      // The filter chain.
+  private _logFormat: string;
+  private _exceptionFormat: string;
 
-  public initialize(config: AppenderConfig/*, threshold: Level*/): void {
+  public initialize(config: AppenderConfig): void {
     this._name = config.name;
-    // this.threshold = threshold;
-    this._layoutPattern = config.layoutPattern;
+    this._logFormat = config.logFormat;
+    this._exceptionFormat = config.exceptionFormat  || '{crlf}{exception-name}: {exception-message}{crlf}{exception-stack}';
   }
 
   public get name(): string {
     return this._name;
   }
 
-  public get layoutPattern(): string {
-    return this._layoutPattern;
+  public get logFormat(): string {
+    return this._logFormat;
+  }
+
+  public get exceptionFormat(): string {
+    return this._exceptionFormat;
   }
 
   public doAppend(loggingEvent: LoggingEvent): void {
@@ -31,40 +33,54 @@ export abstract class Appender {
   }
 
   protected abstract append(loggingEvent: LoggingEvent): void;
-  // protected abstract renderLoggingEvent(loggingEvent: LoggingEvent): string;
 
   protected renderLoggingEvent(loggingEvent: LoggingEvent): string {
-    let message: string = this.layoutPattern;
-    message = message.split('{level}').join(loggingEvent.level.displayName);
-    message = message.split('{logger}').join(loggingEvent.loggerName);
-    message = message.split('{message}').join(loggingEvent.message);
-    message = message.split('{timestamp}').join(loggingEvent.timestamp.toString());
+    let logMessage: string = this._logFormat;
+    logMessage = logMessage.split('{level}').join(loggingEvent.level.displayName);
+    logMessage = logMessage.split('{logger}').join(loggingEvent.loggerName);
+    logMessage = logMessage.split('{message}').join(this.getSafeMessage(loggingEvent.message));
+    logMessage = logMessage.split('{timestamp}').join(loggingEvent.timestamp.toString());
 
     const date: Date = new Date(loggingEvent.timestamp);
-    message = message.split('{date}').join(date.toDateString());              // Mon Aug 07 2017
-    message = message.split('{date-iso}').join(date.toISOString());           // 2017-08-07T14:53:34.329Z
-    message = message.split('{date-short}').join(date.toLocaleDateString());  // 07/08/2017
-    message = message.split('{datetime}').join(date.toLocaleString());        // 07/08/2017, 15:53:34
-    message = message.split('{time}').join(date.toLocaleTimeString());        // 15:53:34
-    message = message.split('{date-utc}').join(date.toUTCString());           // Mon, 07 Aug 2017 14:53:34 GMT
+    logMessage = logMessage.split('{date}').join(date.toDateString());              // Mon Aug 07 2017
+    logMessage = logMessage.split('{date-iso}').join(date.toISOString());           // 2017-08-07T14:53:34.329Z
+    logMessage = logMessage.split('{date-short}').join(date.toLocaleDateString());  // 07/08/2017
+    logMessage = logMessage.split('{datetime}').join(date.toLocaleString());        // 07/08/2017, 15:53:34
+    logMessage = logMessage.split('{time}').join(date.toLocaleTimeString());        // 15:53:34
+    logMessage = logMessage.split('{date-utc}').join(date.toUTCString());           // Mon, 07 Aug 2017 14:53:34 GMT
 
-    let exName: string = '';
-    let exMessage: string = '';
-    let exStack: string = '';
-
+    let exceptionMessage: string = '';
     if (loggingEvent.exception) {
-      const exception: Error = loggingEvent.exception;
-      exName = exception.name;
-      exMessage = exception.message;
-      exStack = exception.stack;
+      exceptionMessage = this.renderException(loggingEvent.exception);
     }
 
-    message = message.split('{exception-name}').join(exName);
-    message = message.split('{exception-message}').join(exMessage);
-    message = message.split('{exception-stack}').join(exStack);
+    logMessage = logMessage.split('{exception}').join(exceptionMessage);
 
-    message = message.split('{crlf}').join('\r\n');
-    message = message.split('{lf}').join('\n');
+    logMessage = logMessage.split('{crlf}').join('\r\n');
+    logMessage = logMessage.split('{lf}').join('\n');
+
+    return logMessage;
+  }
+
+  protected renderException(exception: Error): string {
+    let logMessage: string = this._exceptionFormat;
+
+    logMessage = logMessage.split('{exception-name}').join(exception.name);
+    logMessage = logMessage.split('{exception-message}').join(this.getSafeMessage(exception.message));
+    logMessage = logMessage.split('{exception-stack}').join(exception.stack);
+
+    logMessage = logMessage.split('{crlf}').join('\r\n');
+    logMessage = logMessage.split('{lf}').join('\n');
+
+    return logMessage;
+  }
+
+  private getSafeMessage(message: string): string {
+    if (message === null) {
+      message = '[null]';
+    } else if (typeof message === 'undefined') {
+      message = '[undefined]';
+    }
 
     return message;
   }

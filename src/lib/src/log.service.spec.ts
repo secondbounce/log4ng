@@ -11,7 +11,8 @@ const logServiceConfig: LogServiceConfig = {
       name: 'consoleAppender',
       providerToken: consoleAppenderToken,
 // tslint:disable-next-line:max-line-length
-      layoutPattern: 'ConsoleAppender: {date-iso} {level} {logger} {message}{crlf}{exception-name} - {exception-message}{crlf}{exception-stack}'
+      logFormat: 'ConsoleAppender: {date-iso} {level} {logger} {message}{exception}',
+      exceptionFormat: null
     } as ConsoleAppenderConfig
   ],
   loggers: [
