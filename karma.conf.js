@@ -9,6 +9,9 @@ module.exports = function (config) {
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
+      require('karma-edge-launcher'),
+      require('karma-firefox-launcher'),
+      require('karma-ie-launcher'),
       require('karma-jasmine-html-reporter')
     ],
 
@@ -83,7 +86,8 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'],
+// TODO: IE is currently omitted until we can work out how to fix the JS errors
+    browsers: ['Chrome', 'Firefox', 'Edge'],
     singleRun: false
   })
 }
