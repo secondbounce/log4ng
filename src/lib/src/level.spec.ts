@@ -3,7 +3,6 @@ import { TestBed, inject } from '@angular/core/testing';
 import { Level } from './level';
 
 describe('Level', () => {
-
   it('should define initial default levels', () => {
     let level: Level;
 
@@ -44,150 +43,6 @@ describe('Level', () => {
     expect(newLevel).toEqual(customLevel);
   });
 
-  it('allows any numeric value for value property', () => {
-    // tslint:disable-next-line:no-magic-numbers
-    let value: number = -1000;
-    let level: Level = new Level(value, 'test-1000', 'test level -1000');
-    expect(level.value).toEqual(value);
-
-    // tslint:disable-next-line:no-magic-numbers
-    value = -1.5;
-    level = new Level(value, 'test-1.5', 'test level -1.5');
-    expect(level.value).toEqual(value);
-
-    // tslint:disable-next-line:no-magic-numbers
-    value = 0;
-    level = new Level(value, 'test0', 'test level 0');
-    expect(level.value).toEqual(value);
-
-    // tslint:disable-next-line:no-magic-numbers
-    value = 1.5;
-    level = new Level(value, 'test1.5', 'test level 1.5');
-    expect(level.value).toEqual(value);
-
-    // tslint:disable-next-line:no-magic-numbers
-    value = 1000;
-    level = new Level(value, 'test1000', 'test level 1000');
-    expect(level.value).toEqual(value);
-  });
-
-  it('allows duplicate numeric value for value property', () => {
-    // tslint:disable-next-line:no-magic-numbers
-    const value: number = 1234;
-    let name: string = 'test-' + Math.random().toString();
-    let displayName: string = name;
-    let level: Level = new Level(value, name, displayName);
-    expect(level.value).toEqual(value);
-
-    name = 'test-' + Math.random().toString();
-    displayName = name;
-    level = new Level(value, name, displayName);
-    expect(level.value).toEqual(value);
-  });
-
-  it('throws error if an undefined value is specified for value property', () => {
-    const name: string = 'test';
-    const displayName: string = 'test level';
-
-    // tslint:disable-next-line:no-unnecessary-initializer
-    const value: number = undefined;
-    expect(() => { const badLevel: Level = new Level(value, name, displayName); }).toThrowError(Error);
-  });
-
-  it('throws error if a null value is specified for value property', () => {
-    const name: string = 'test';
-    const displayName: string = 'test level';
-
-    // tslint:disable-next-line:no-unnecessary-initializer
-    const value: number = null;
-    expect(() => { const badLevel: Level = new Level(value, name, displayName); }).toThrowError(Error);
-  });
-
-  it('throws error if duplicate string value is specified for name property', () => {
-    const originalDebugLevel: Level = Level.debug;
-    const newDebugValue: number = originalDebugLevel.value + 1;
-    const newDebugDisplayName: string = '!!' + originalDebugLevel.displayName + '!!';
-
-    expect(() => { const newDebugLevel: Level = new Level(newDebugValue, originalDebugLevel.name, newDebugDisplayName); })
-          .toThrowError(Error);
-  });
-
-  it('throws error if an empty string value is specified for name property', () => {
-    const value: number = 1000;
-    const name: string = '';
-    const displayName: string = 'test level';
-
-    expect(() => { const badLevel: Level = new Level(value, name, displayName); }).toThrowError(Error);
-  });
-
-  it('throws error if an undefined value is specified for name property', () => {
-    const value: number = 1000;
-    const name: string = undefined;
-    const displayName: string = 'test level';
-
-    expect(() => { const badLevel: Level = new Level(value, name, displayName); }).toThrowError(Error);
-  });
-
-  it('throws error if a null value is specified for name property', () => {
-    const value: number = 1000;
-    const name: string = null;
-    const displayName: string = 'test level';
-
-    expect(() => { const badLevel: Level = new Level(value, name, displayName); }).toThrowError(Error);
-  });
-
-  it('allows an empty string value for displayName property', () => {
-    const value: number = 1111;
-    const name: string = 'test-' + Math.random().toString();
-    const displayName: string = '';
-    const level: Level = new Level(value, name, displayName);
-    expect(level.displayName).toEqual(displayName);
-  });
-
-  it('allows duplicate string value for displayName property', () => {
-    let value: number = 1111;
-    let name: string = 'test-' + Math.random().toString();
-    const displayName: string = 'test display name';
-    let level: Level = new Level(value, name, displayName);
-    expect(level.displayName).toEqual(displayName);
-
-    // tslint:disable-next-line:no-magic-numbers
-    value = 2222;
-    name = 'test-' + Math.random().toString();
-    level = new Level(value, name, displayName);
-    expect(level.displayName).toEqual(displayName);
-  });
-
-  it('throws error if an undefined value is specified for displayName property', () => {
-    const value: number = 1000;
-    const name: string = 'test-' + Math.random().toString();  /* Ensure it's unique, otherwise 'wrong' error may be thrown */
-    const displayName: string = undefined;
-
-    expect(() => { const badLevel: Level = new Level(value, name, displayName); }).toThrowError(Error);
-  });
-
-  it('throws error if a null value is specified for displayName property', () => {
-    const value: number = 1000;
-    const name: string = 'test-' + Math.random().toString();  /* Ensure it's unique, otherwise 'wrong' error may be thrown */
-    const displayName: string = null;
-
-    expect(() => { const badLevel: Level = new Level(value, name, displayName); }).toThrowError(Error);
-  });
-
-  it('is possible to change the displayName property', () => {
-    const level: Level = Level.fatal;
-    const originalDisplayName: string = level.displayName;
-
-    let newDisplayName: string = 'Catastrophic!';
-    expect(newDisplayName).not.toEqual(originalDisplayName);  /* Just in case! */
-    level.displayName = newDisplayName;
-    expect(level.displayName).toEqual(newDisplayName);
-
-    newDisplayName = 'Really CATASTROPHIC!!!!!';
-    level.displayName = newDisplayName;
-    expect(level.displayName).toEqual(newDisplayName);
-  });
-
   it('uses case-insensitive search for levels', () => {
     const value: number = 600;
     const name: string = 'CaTaStRoPhIc-' + Math.random().toString();
@@ -205,5 +60,151 @@ describe('Level', () => {
   it('returns null for non-existent levels', () => {
     const nonexistentLevel: Level = Level.getLevel('£$%^&*(');
     expect(nonexistentLevel).toBeNull();
+  });
+
+  describe('value property', () => {
+// tslint:disable:no-magic-numbers
+    it('allows any numeric value', () => {
+      let value: number = -1000;
+      let level: Level = new Level(value, 'test-1000', 'test level -1000');
+      expect(level.value).toEqual(value);
+
+      value = -1.5;
+      level = new Level(value, 'test-1.5', 'test level -1.5');
+      expect(level.value).toEqual(value);
+
+      value = 0;
+      level = new Level(value, 'test0', 'test level 0');
+      expect(level.value).toEqual(value);
+
+      value = 1.5;
+      level = new Level(value, 'test1.5', 'test level 1.5');
+      expect(level.value).toEqual(value);
+
+      value = 1000;
+      level = new Level(value, 'test1000', 'test level 1000');
+      expect(level.value).toEqual(value);
+    });
+
+    it('allows duplicate numeric value', () => {
+      const value: number = 1234;
+      let name: string = 'test-' + Math.random().toString();
+      let displayName: string = name;
+      let level: Level = new Level(value, name, displayName);
+      expect(level.value).toEqual(value);
+
+      name = 'test-' + Math.random().toString();
+      displayName = name;
+      level = new Level(value, name, displayName);
+      expect(level.value).toEqual(value);
+    });
+// tslint:enable:no-magic-numbers
+
+// tslint:disable:no-unnecessary-initializer
+    it('throws error if an undefined value is specified', () => {
+      const name: string = 'test';
+      const displayName: string = 'test level';
+
+      const value: number = undefined;
+      expect(() => { const badLevel: Level = new Level(value, name, displayName); }).toThrowError(Error);
+    });
+
+    it('throws error if a null value is specified', () => {
+      const name: string = 'test';
+      const displayName: string = 'test level';
+
+      const value: number = null;
+      expect(() => { const badLevel: Level = new Level(value, name, displayName); }).toThrowError(Error);
+    });
+// tslint:enable:no-unnecessary-initializer
+  });
+
+  describe('name property', () => {
+    it('throws error if duplicate string value is specified', () => {
+      const originalDebugLevel: Level = Level.debug;
+      const newDebugValue: number = originalDebugLevel.value + 1;
+      const newDebugDisplayName: string = '!!' + originalDebugLevel.displayName + '!!';
+
+      expect(() => { const newDebugLevel: Level = new Level(newDebugValue, originalDebugLevel.name, newDebugDisplayName); })
+            .toThrowError(Error);
+    });
+
+    it('throws error if an empty string value is specified', () => {
+      const value: number = 1000;
+      const name: string = '';
+      const displayName: string = 'test level';
+
+      expect(() => { const badLevel: Level = new Level(value, name, displayName); }).toThrowError(Error);
+    });
+
+    it('throws error if an undefined value is specified', () => {
+      const value: number = 1000;
+      const name: string = undefined;
+      const displayName: string = 'test level';
+
+      expect(() => { const badLevel: Level = new Level(value, name, displayName); }).toThrowError(Error);
+    });
+
+    it('throws error if a null value is specified', () => {
+      const value: number = 1000;
+      const name: string = null;
+      const displayName: string = 'test level';
+
+      expect(() => { const badLevel: Level = new Level(value, name, displayName); }).toThrowError(Error);
+    });
+  });
+
+  describe('displayName property', () => {
+    it('allows an empty string value', () => {
+      const value: number = 1111;
+      const name: string = 'test-' + Math.random().toString();
+      const displayName: string = '';
+      const level: Level = new Level(value, name, displayName);
+      expect(level.displayName).toEqual(displayName);
+    });
+
+    it('allows duplicate string value', () => {
+      let value: number = 1111;
+      let name: string = 'test-' + Math.random().toString();
+      const displayName: string = 'test display name';
+      let level: Level = new Level(value, name, displayName);
+      expect(level.displayName).toEqual(displayName);
+
+// tslint:disable-next-line:no-magic-numbers
+      value = 2222;
+      name = 'test-' + Math.random().toString();
+      level = new Level(value, name, displayName);
+      expect(level.displayName).toEqual(displayName);
+    });
+
+    it('throws error if an undefined value is specified', () => {
+      const value: number = 1000;
+      const name: string = 'test-' + Math.random().toString();  /* Ensure it's unique, otherwise 'wrong' error may be thrown */
+      const displayName: string = undefined;
+
+      expect(() => { const badLevel: Level = new Level(value, name, displayName); }).toThrowError(Error);
+    });
+
+    it('throws error if a null value is specified', () => {
+      const value: number = 1000;
+      const name: string = 'test-' + Math.random().toString();  /* Ensure it's unique, otherwise 'wrong' error may be thrown */
+      const displayName: string = null;
+
+      expect(() => { const badLevel: Level = new Level(value, name, displayName); }).toThrowError(Error);
+    });
+
+    it('is possible to change', () => {
+      const level: Level = Level.fatal;
+      const originalDisplayName: string = level.displayName;
+
+      let newDisplayName: string = 'Catastrophic!';
+      expect(newDisplayName).not.toEqual(originalDisplayName);  /* Just in case! */
+      level.displayName = newDisplayName;
+      expect(level.displayName).toEqual(newDisplayName);
+
+      newDisplayName = 'Really CATASTROPHIC!!!!!';
+      level.displayName = newDisplayName;
+      expect(level.displayName).toEqual(newDisplayName);
+    });
   });
 });
