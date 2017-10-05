@@ -100,57 +100,62 @@ describe('Level', () => {
     });
 // tslint:enable:no-magic-numbers
 
-// tslint:disable:no-unnecessary-initializer
-    it('throws error if an undefined value is specified', () => {
-      const name: string = 'test';
+    it('does not save the level if an undefined value is specified', () => {
+      const name: string = 'test-' + Math.random().toString();
       const displayName: string = 'test level';
 
       const value: number = undefined;
-      expect(() => { const badLevel: Level = new Level(value, name, displayName); }).toThrowError(Error);
+      const badLevel: Level = new Level(value, name, displayName);
+      expect(Level.getLevel(name)).toBeNull();
     });
 
-    it('throws error if a null value is specified', () => {
-      const name: string = 'test';
+    it('does not save the level if a null value is specified', () => {
+      const name: string = 'test-' + Math.random().toString();
       const displayName: string = 'test level';
 
       const value: number = null;
-      expect(() => { const badLevel: Level = new Level(value, name, displayName); }).toThrowError(Error);
+      const badLevel: Level = new Level(value, name, displayName);
+      expect(Level.getLevel(name)).toBeNull();
     });
-// tslint:enable:no-unnecessary-initializer
   });
 
   describe('name property', () => {
-    it('throws error if duplicate string value is specified', () => {
+    it('does not save the level if duplicate string value is specified', () => {
       const originalDebugLevel: Level = Level.debug;
+      const name: string = originalDebugLevel.name;
       const newDebugValue: number = originalDebugLevel.value + 1;
       const newDebugDisplayName: string = '!!' + originalDebugLevel.displayName + '!!';
 
-      expect(() => { const newDebugLevel: Level = new Level(newDebugValue, originalDebugLevel.name, newDebugDisplayName); })
-            .toThrowError(Error);
+      const newDebugLevel: Level = new Level(newDebugValue, name, newDebugDisplayName);
+      const savedDebugLevel: Level = Level.getLevel(name);
+      expect(savedDebugLevel).toEqual(originalDebugLevel);
     });
 
-    it('throws error if an empty string value is specified', () => {
+    it('does not save the level if an empty string value is specified', () => {
       const value: number = 1000;
       const name: string = '';
       const displayName: string = 'test level';
 
-      expect(() => { const badLevel: Level = new Level(value, name, displayName); }).toThrowError(Error);
+      const badLevel: Level = new Level(value, name, displayName);
+      expect(Level.getLevel(name)).toBeNull();
     });
 
-    it('throws error if an undefined value is specified', () => {
+    it('does not save the level if an undefined value is specified', () => {
       const value: number = 1000;
       const name: string = undefined;
       const displayName: string = 'test level';
 
-      expect(() => { const badLevel: Level = new Level(value, name, displayName); }).toThrowError(Error);
+      const badLevel: Level = new Level(value, name, displayName);
+      expect(Level.getLevel(name)).toBeNull();
     });
 
-    it('throws error if a null value is specified', () => {
+    it('does not save the level if a null value is specified', () => {
       const value: number = 1000;
       const name: string = null;
       const displayName: string = 'test level';
 
-      expect(() => { const badLevel: Level = new Level(value, name, displayName); }).toThrowError(Error);
+      const badLevel: Level = new Level(value, name, displayName);
+      expect(Level.getLevel(name)).toBeNull();
     });
   });
 
@@ -177,20 +182,22 @@ describe('Level', () => {
       expect(level.displayName).toEqual(displayName);
     });
 
-    it('throws error if an undefined value is specified', () => {
+    it('does not save the level if an undefined value is specified', () => {
       const value: number = 1000;
       const name: string = 'test-' + Math.random().toString();  /* Ensure it's unique, otherwise 'wrong' error may be thrown */
       const displayName: string = undefined;
 
-      expect(() => { const badLevel: Level = new Level(value, name, displayName); }).toThrowError(Error);
+      const badLevel: Level = new Level(value, name, displayName);
+      expect(Level.getLevel(name)).toBeNull();
     });
 
-    it('throws error if a null value is specified', () => {
+    it('does not save the level if a null value is specified', () => {
       const value: number = 1000;
       const name: string = 'test-' + Math.random().toString();  /* Ensure it's unique, otherwise 'wrong' error may be thrown */
       const displayName: string = null;
 
-      expect(() => { const badLevel: Level = new Level(value, name, displayName); }).toThrowError(Error);
+      const badLevel: Level = new Level(value, name, displayName);
+      expect(Level.getLevel(name)).toBeNull();
     });
 
     it('is possible to change', () => {
