@@ -38,11 +38,6 @@ export class LogService {
     return logger;
   }
 
-  public isLevelEnabled(level: Level): boolean {
-// TODO:
-    return true;
-  }
-
   public dispatch(loggingEvent: LoggingEvent): void {
 // TODO: what if more than one loggerconfig is present for the same name? (Test)
     let loggerConfig: LoggerConfig = this.loggerConfigs[loggingEvent.loggerName];

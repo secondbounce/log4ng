@@ -7,26 +7,6 @@ export class Logger {
               private readonly logService: LogService) {
   }
 
-  public get isDebugEnabled(): boolean {
-    return this.logService.isLevelEnabled(Level.debug);
-  }
-
-  public get isInfoEnabled(): boolean {
-    return this.logService.isLevelEnabled(Level.info);
-  }
-
-  public get isWarnEnabled(): boolean {
-    return this.logService.isLevelEnabled(Level.warn);
-  }
-
-  public get isErrorEnabled(): boolean {
-    return this.logService.isLevelEnabled(Level.error);
-  }
-
-  public get isFatalEnabled(): boolean {
-    return this.logService.isLevelEnabled(Level.fatal);
-  }
-
   public debug(messageOrException: string | Error): void;
   public debug(message: string, exception: Error): void;
   public debug(messageOrException: string | Error, exception?: Error): void {
