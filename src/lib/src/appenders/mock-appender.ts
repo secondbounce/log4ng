@@ -4,7 +4,7 @@ import { Appender } from './appender';
 import { AppenderConfig } from './appender-config';
 import { LoggingEvent } from '../logging-event';
 
-export let mockAppenderToken: InjectionToken<MockAppender> = new InjectionToken<MockAppender>('MockAppender');
+export let mockAppenderToken: InjectionToken<Appender> = new InjectionToken<Appender>('MockAppender');
 
 /**
  * Mock appender class for testing the base Appender class

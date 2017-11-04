@@ -7,7 +7,7 @@ import { ConsoleService } from '../console.service';
 import { Level } from '../level';
 import { LoggingEvent } from '../logging-event';
 
-export let consoleAppenderToken: InjectionToken<ConsoleAppender> = new InjectionToken<ConsoleAppender>('ConsoleAppender');
+export let consoleAppenderToken: InjectionToken<Appender> = new InjectionToken<Appender>('ConsoleAppender');
 
 @Injectable()
 export class ConsoleAppender extends Appender {

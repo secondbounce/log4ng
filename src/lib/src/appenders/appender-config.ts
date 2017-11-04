@@ -1,8 +1,10 @@
-import { OpaqueToken } from '@angular/core';
+import { InjectionToken } from '@angular/core';
+
+import { Appender } from './appender';
 
 export interface AppenderConfig {
   name: string;
-  providerToken: OpaqueToken;
+  providerToken: InjectionToken<Appender>;
   logFormat: string;
   exceptionFormat: string;
 }
