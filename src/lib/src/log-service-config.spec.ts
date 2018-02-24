@@ -26,7 +26,7 @@ const logServiceConfig: LogServiceConfig = {
   ]
 };
 
-describe('LogService', () => {
+describe('LogService configuration', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
@@ -40,14 +40,12 @@ describe('LogService', () => {
   });
 
 /*
-* constructor (ie. configuration)
-  * appenders configured
-  * loggers configured
+* loggers vs appenders vs levels
 
-* getLogger()
-  * creates new logger
-  * returns existing logger
-  * logger name is case-insensitive?
-
+* appender names must be unique
 */
+
+// TODO: exercise the log service
+  // xit('', () => {
+  // });
 });
