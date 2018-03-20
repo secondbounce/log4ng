@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Installing log4ng
+title: Installing log4ngx
 ---
 
-# Installing log4ng
+# Installing log4ngx

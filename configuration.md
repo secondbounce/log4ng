@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Configuring log4ng
+title: Configuring log4ngx
 ---
 
-# Configuring log4ng
+# Configuring log4ngx

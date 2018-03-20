@@ -1,4 +1,4 @@
-name: log4ng - a Typescript logging framework for Angular
+name: log4ngx - a Typescript logging framework for Angular
 theme: jekyll-theme-cayman
 plugins:
   - jekyll-sitemap
