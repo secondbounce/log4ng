@@ -3,7 +3,7 @@
     "baseDir": "src/demo",
     "routes": {
       "/node_modules": "node_modules",
-      "/log4ng": "src/lib"
+      "/log4ngx": "src/lib"
     }
   }
 }

@@ -15,8 +15,8 @@
     "annotateForClosureCompiler": true,
     "strictMetadataEmit": true,
     "skipTemplateCodegen": true,
-    "flatModuleOutFile": "log4ng.js",
-    "flatModuleId": "@log4ng/log4ng",
+    "flatModuleOutFile": "log4ngx.js",
+    "flatModuleId": "log4ngx",
     "genDir": "../../out-tsc/lib-gen-dir/"
   }
 }

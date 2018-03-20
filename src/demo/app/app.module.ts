@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { Log4ngModule } from '@log4ng/log4ng';
+import { Log4ngxModule } from 'log4ngx';
 
 import { AppComponent } from './app.component';
 
 @NgModule({
   imports: [
     BrowserModule,
-    Log4ngModule
+    Log4ngxModule
   ],
   declarations: [
     AppComponent

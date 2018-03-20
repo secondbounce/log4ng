@@ -16,15 +16,15 @@ export class Level {
               public readonly name: string,
               displayName: string) {
     if (value == null) {    /* Inexact so it will also catch undefined values */
-      console.error(`LOG4NG: A numeric value must be specified for 'value'`);
+      console.error(`LOG4NGX: A numeric value must be specified for 'value'`);
     } else {
       if (name == null /* Inexact so it will also catch undefined values */ || name.length === 0) {
-        console.error(`LOG4NG: A non-null, non-empty string value must be specified for 'name'`);
+        console.error(`LOG4NGX: A non-null, non-empty string value must be specified for 'name'`);
       } else {
         const key: string = name.toLowerCase();
         const level: Level = Level.levels[key];
         if (level) {
-          console.error(`LOG4NG: A level has already been defined with the name '${key}'`);
+          console.error(`LOG4NGX: A level has already been defined with the name '${key}'`);
         } else {
           if (this.isDisplayNameValid(displayName)) {
             this._displayName = displayName;
@@ -45,7 +45,7 @@ export class Level {
     if (levelName) {
       level = this.levels[levelName.toLowerCase()];
       if (!level) {
-        console.error(`LOG4NG: No level defined for '${levelName.toLowerCase()}'`);
+        console.error(`LOG4NGX: No level defined for '${levelName.toLowerCase()}'`);
       }
     }
 
@@ -65,7 +65,7 @@ export class Level {
     let isValid: boolean = true;
 
     if (displayName == null) {    /* Inexact so it will also catch undefined values */
-      console.error(`LOG4NG: A string value must be specified for 'displayName'`);
+      console.error(`LOG4NGX: A string value must be specified for 'displayName'`);
       isValid = false;
     }
 

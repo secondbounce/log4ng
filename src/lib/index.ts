@@ -1,4 +1,4 @@
-export { Log4ngModule } from './src/log4ng.module';
+export { Log4ngxModule } from './src/log4ngx.module';
 export { LogService } from './src/log.service';
 export { LogServiceConfig } from './src/log-service-config';
 export { Logger } from './src/logger';

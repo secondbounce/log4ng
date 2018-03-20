@@ -1,6 +1,6 @@
-log4ng is a Typescript logging framework for Angular projects, based on concepts used in Log4j, Log4net, etc.
+log4ngx is a Typescript logging framework for Angular projects, based on concepts used in Log4j, Log4net, etc.
 
-[![Build Status](https://travis-ci.org/secondbounce/log4ng.svg?branch=master)](https://travis-ci.org/secondbounce/log4ng)
+[![Build Status](https://travis-ci.org/secondbounce/log4ngx.svg?branch=master)](https://travis-ci.org/secondbounce/log4ngx)
 
 ## Concepts
 ### LogService

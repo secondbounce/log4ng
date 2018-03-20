@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Log4ngModule } from '@log4ng/log4ng';
+import { Log4ngxModule } from 'log4ngx';
 
 @Component({
   selector: 'integration-app',

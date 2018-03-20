@@ -11,4 +11,4 @@ import { LogService } from './log.service';
   ],
   exports: []
 })
-export class Log4ngModule { }
+export class Log4ngxModule { }

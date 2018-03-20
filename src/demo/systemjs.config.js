@@ -39,7 +39,7 @@
       rxjs: {
         defaultExtension: 'js'
       },
-      'log4ng': {
+      'log4ngx': {
         main: 'index.js',
         defaultExtension: 'js',
         meta: {
