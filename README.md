@@ -4,6 +4,8 @@ log4ngx is a Typescript logging framework for Angular projects, based on concept
 
 ## Concepts
 ### LogService
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/secondbounce/log4ngx.svg)](https://greenkeeper.io/)
 The `LogService` is the factory with which you instantiate `Loggers` in each of the components, services, etc, in which you wish to log messages.  Behind the scenes, it also orchestrates the dispatch of messages from the `Loggers` to the appropriate `Appenders`.
 
 ### LogServiceConfig
