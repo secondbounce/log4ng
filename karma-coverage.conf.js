@@ -15,7 +15,13 @@ module.exports = function (config) {
     preprocessors: {
       './src/lib/**/!(*spec).js': 'coverage'
     },
-    browsers: ['Chrome'],
+    browsers: ['ChromeNoSandbox'],
+    customLaunchers: {
+      ChromeNoSandbox: {  // See https://docs.travis-ci.com/user/chrome#Sandboxing
+        base: 'Chrome',
+        flags: ['--no-sandbox']
+      }
+    },
     reporters: ['progress', 'kjhtml', 'coverage', 'remap-coverage'],
     coverageReporter: {
       type: 'in-memory'
