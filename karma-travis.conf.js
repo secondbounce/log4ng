@@ -12,7 +12,13 @@ module.exports = function (config) {
       require('karma-jasmine-html-reporter')
     ],
     autoWatch: false,
-    browsers: ['Chrome', 'Firefox'],
+    browsers: ['ChromeNoSandbox', 'Firefox'],
+    customLaunchers: {
+      ChromeNoSandbox: {  // See https://docs.travis-ci.com/user/chrome#Sandboxing
+        base: 'Chrome',
+        flags: ['--no-sandbox']
+      }
+    },
     singleRun: true
   })
 }
