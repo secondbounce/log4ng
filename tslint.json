@@ -23,7 +23,6 @@
       "spaces"
     ],
     "interface-over-type-literal": true,
-    "invoke-injectable": true,
     "label-position": true,
     "max-line-length": [
       true,
@@ -44,7 +43,6 @@
         ]
       }
     ],
-    "no-access-missing-member": true,
     "no-arg": true,
     "no-bitwise": true,
     "no-console": [
@@ -94,7 +92,6 @@
       true,
       "always"
     ],
-    "templates-use-public": true,
     "triple-equals": [
       true,
       "allow-null-check"
@@ -107,7 +104,6 @@
       "property-declaration",
       "variable-declaration"
     ],
-    "typeof-compare": true,
     "typedef-whitespace": [
       true,
       {
