@@ -1,6 +1,11 @@
 log4ngx is a Typescript logging framework for Angular projects, based on concepts used in Log4j, Log4net, etc.
 
 [![Build Status](https://travis-ci.org/secondbounce/log4ngx.svg?branch=master)](https://travis-ci.org/secondbounce/log4ngx)
+[![Greenkeeper badge](https://badges.greenkeeper.io/secondbounce/log4ngx.svg)](https://greenkeeper.io/)
+
+> **Current Status**  
+> The library is now complete enough to be used in production if the `ConsoleAppender` is sufficient for your needs.
+> Documentation is being completed in the repository's Github Pages and will be updated as progress is made - as soon as it is in a reasonably complete state, a proper link will be made available here.
 
 ## Concepts
 ### LogService
