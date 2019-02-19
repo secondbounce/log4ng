@@ -310,13 +310,13 @@ describe('Base Appender', () => {
         log.error(ex);
       }
 
-      /* We can't guarantee the exact output in the stacktrace but it *should* contain the name of this test
-         script (well, the equivalent JS filename, at any rate) so we'll look for that.
-
-         ...Unless, of course, we're running under Edge which doesn't include the source file name <sigh>.
+      /* We can't guarantee the exact output in the stacktrace since each combination of browser, browser
+         version, Angular, webpack and so on, all conspire to affect the output.  So it's HIGHLY likely that
+         any package upgrades, etc, will cause this test to fail. So we'll try to use regexes that minimise
+         the chance of failure.
       */
-      const pattern: RegExp = /Edge/.test(window.navigator.userAgent) ? new RegExp(/TestBed\.prototype\.execute/)
-                                                                      : new RegExp(/appender\.spec\.js/);
+      const pattern: RegExp = /Edge/.test(window.navigator.userAgent) ? new RegExp(/at TestBedViewEngine\.prototype\.execute/)
+                                                                      : new RegExp(/appender\.spec\.(ts|js)/);
       expect(MockAppender.lastOutput).toMatch(pattern);
 
       Error.stackTraceLimit = previousLimit;
