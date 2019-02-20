@@ -1,17 +1,14 @@
-const karmaConf = require('./karma.conf.js');
+const setBaseKarmaConf = require('./karma-base.conf.js');
+
 module.exports = function (config) {
-  // Generic Karma Configuration
-  karmaConf(config);
+  setBaseKarmaConf(config);
 
   // Extended configuration for running Karma tests under Travis
   config.set({
-    plugins: [
-      require('karma-jasmine'),
+    plugins: config.plugins.concat([
       require('karma-chrome-launcher'),
-      require('karma-firefox-launcher'),
-      require('karma-jasmine-html-reporter')
-    ],
-    autoWatch: false,
+      require('karma-firefox-launcher')
+    ]),
     browsers: ['ChromeNoSandbox', 'Firefox'],
     customLaunchers: {
       ChromeNoSandbox: {  // See https://docs.travis-ci.com/user/chrome#Sandboxing
@@ -19,6 +16,7 @@ module.exports = function (config) {
         flags: ['--no-sandbox']
       }
     },
+    autoWatch: false,
     singleRun: true
   })
 }

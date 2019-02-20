@@ -1,17 +1,17 @@
-const karmaConf = require('./karma.conf.js');
+const setBaseKarmaConf = require('./karma-base.conf.js');
+
 module.exports = function (config) {
-  // Generic Karma Configuration
-  karmaConf(config);
+  setBaseKarmaConf(config);
+
+  var outputDir = '../../coverage/log4ngx/remap';
 
   // Extended Configuration for Karma Coverage Reports
   config.set({
-    plugins: [
-      require('karma-jasmine'),
+    plugins: config.plugins.concat([
       require('karma-chrome-launcher'),
-      require('karma-jasmine-html-reporter'),
       require('karma-coverage'),
       require('karma-remap-coverage')
-    ],
+    ]),
     preprocessors: {
       './src/lib/**/!(*spec).js': 'coverage'
     },
@@ -28,8 +28,9 @@ module.exports = function (config) {
     },
     remapCoverageReporter: {
       'text-summary': null,
-      html: './coverage/html',
-      cobertura: './coverage/coverage.xml'
-    }
+      html: require('path').join(__dirname, outputDir),
+      cobertura: outputDir + '/coverage.xml'
+    },
+    singleRun: true
   })
 }
