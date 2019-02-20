@@ -1,8 +1,8 @@
 import { Injectable, InjectionToken } from '@angular/core';
 
+import { LoggingEvent } from '../logging-event';
 import { Appender } from './appender';
 import { AppenderConfig } from './appender-config';
-import { LoggingEvent } from '../logging-event';
 
 export let mockAppenderToken: InjectionToken<Appender> = new InjectionToken<Appender>('MockAppender');
 

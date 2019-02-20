@@ -1,11 +1,11 @@
 import { Injector } from '@angular/core';
-import { TestBed, inject } from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 
-import { AppenderConfig } from './appender-config';
 import { Level } from '../level';
-import { Logger } from '../logger';
-import { LogService } from '../log.service';
 import { LogServiceConfig } from '../log-service-config';
+import { LogService } from '../log.service';
+import { Logger } from '../logger';
+import { AppenderConfig } from './appender-config';
 import { MockAppender, mockAppenderToken } from './mock-appender';
 
 const logServiceConfig: LogServiceConfig = {
@@ -35,7 +35,7 @@ describe('Base Appender', () => {
         Injector,
         LogService,
         { provide: LogServiceConfig, useValue: logServiceConfig },
-        { provide: mockAppenderToken, useClass: MockAppender },
+        { provide: mockAppenderToken, useClass: MockAppender }
       ]
     });
   });

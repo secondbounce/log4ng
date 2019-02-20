@@ -1,6 +1,6 @@
 import { Level } from './level';
-import { LoggingEvent } from './logging-event';
 import { LogService } from './log.service';
+import { LoggingEvent } from './logging-event';
 
 export class Logger {
   constructor(public readonly name: string,

@@ -2,16 +2,16 @@ import { Injectable, Injector } from '@angular/core';
 
 import { Appender } from './appenders/appender';
 import { Level } from './level';
+import { LogServiceConfig } from './log-service-config';
 import { Logger } from './logger';
 import { LoggerConfig } from './logger-config';
 import { LoggingEvent } from './logging-event';
-import { LogServiceConfig } from './log-service-config';
 
 @Injectable()
 export class LogService {
-  private loggers: { [key: string]: Logger } = {};
-  private appenders: { [key: string]: Appender } = {};
-  private loggerConfigs: { [key: string]: LoggerConfig } = {};
+  private loggers: { [key: string]: Logger } = { };
+  private appenders: { [key: string]: Appender } = { };
+  private loggerConfigs: { [key: string]: LoggerConfig } = { };
 
   constructor(injector: Injector,
               config: LogServiceConfig) {

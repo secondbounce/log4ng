@@ -1,9 +1,9 @@
-import { TestBed, inject } from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 
-import { LogService } from './log.service';
-import { LogServiceConfig } from './log-service-config';
 import { ConsoleAppender, consoleAppenderToken } from './appenders/console-appender';
 import { ConsoleAppenderConfig } from './appenders/console-appender-config';
+import { LogServiceConfig } from './log-service-config';
+import { LogService } from './log.service';
 
 const logServiceConfig: LogServiceConfig = {
   appenders: [
@@ -34,10 +34,8 @@ describe('LogService', () => {
 // TODO: use mock console service so output can be tested
         { provide: consoleAppenderToken, useClass: ConsoleAppender },
 // TODO: create additional mock appender type for testing??
-        { provide: LogServiceConfig, useValue: logServiceConfig },
+        { provide: LogServiceConfig, useValue: logServiceConfig }
       ]
     });
   });
-
-
 });

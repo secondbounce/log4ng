@@ -1,11 +1,10 @@
 import { Injectable, InjectionToken } from '@angular/core';
 
-import { Appender } from './appender';
-import { AppenderConfig } from './appender-config';
-import { ConsoleAppenderConfig } from './console-appender-config';
 import { ConsoleService } from '../console.service';
 import { Level } from '../level';
 import { LoggingEvent } from '../logging-event';
+import { Appender } from './appender';
+import { ConsoleAppenderConfig } from './console-appender-config';
 
 export let consoleAppenderToken: InjectionToken<Appender> = new InjectionToken<Appender>('ConsoleAppender');
 

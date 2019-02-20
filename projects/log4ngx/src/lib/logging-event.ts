@@ -7,7 +7,6 @@ export class LoggingEvent {
   public exception: Error;
   public readonly timestamp: number = Date.now();
 
-
 // Public field	Domain	    // String representation of the AppDomain.
 // Public field	ExceptionString	    // The string representation of the exception
 // Public field	Identity	    // String representation of the identity.
@@ -18,8 +17,6 @@ export class LoggingEvent {
 // Public field	Properties	    // Additional event specific properties
 // Public field	ThreadName	    // The name of thread
 // Public field	UserName	    // String representation of the user
-
-
 
 // Public property	Domain    // Gets the AppDomain friendly name.
 // Public property	Fix   // The fixed fields in this event

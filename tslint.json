@@ -13,6 +13,7 @@
     "array-type": false,
     "arrow-parens": false,
     "ban-comma-operator": true,
+    "ban-ts-ignore": true,
     "component-class-suffix": true,
     "deprecation": {
       "severity": "warn"
@@ -20,8 +21,12 @@
     "directive-class-suffix": true,
     "file-name-casing": [
       true,
-      "kebab-case"
+      {
+        "public_api.ts": "snake-case",
+        ".*": "kebab-case"
+      }
     ],
+    "function-constructor": true,
     "import-blacklist": [
       true,
       "rxjs/Rx"
@@ -91,6 +96,7 @@
         "singleline": "never"
       }
     ],
+    "type-literal-delimiter": true,
     "typedef": [
       true,
       "call-signature",
@@ -99,6 +105,8 @@
       "property-declaration",
       "variable-declaration"
     ],
+    "unnecessary-bind": true,
+    "unnecessary-constructor": true,
     "use-host-property-decorator": true,
     "use-input-property-decorator": true,
     "use-life-cycle-interface": true,

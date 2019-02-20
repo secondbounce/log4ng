@@ -1,5 +1,5 @@
-import { AppenderConfig } from './appender-config';
 import { LoggingEvent } from '../logging-event';
+import { AppenderConfig } from './appender-config';
 
 export abstract class Appender {
   private _name: string;

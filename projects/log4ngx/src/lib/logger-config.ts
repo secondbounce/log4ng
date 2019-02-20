@@ -1,4 +1,3 @@
-import { Level } from './level';
 
 export class LoggerConfig {
   public loggerName: string;
@@ -52,15 +51,5 @@ export class LoggerConfig {
     </logger>
 
 </log4net>
-
-
-
-
-
-
-
-
-
-
 */
 }
