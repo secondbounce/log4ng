@@ -1,0 +1,34 @@
+{
+  "name": "log4ngx",
+  "version": "0.1.0",
+  "description": "A Typescript logging framework for Angular projects",
+  "author": "David Geary <david@secondbounce.com>",
+  "main": "./bundles/log4ngx.umd.js",
+  "module": "./esm5/log4ngx.js",
+  "es2015": "./esm2015/log4ngx.js",
+  "typings": "./log4ngx.d.ts",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/secondbounce/log4ngx.git"
+  },
+  "bugs": {
+    "url": "https://github.com/secondbounce/log4ngx/issues"
+  },
+  "keywords": [
+    "angular",
+    "angular4",
+    "angular5",
+    "log4",
+    "logging",
+    "typescript"
+  ],
+  "engines": {
+    "node": ">= 6.9.0",
+    "npm": ">= 3.0.0"
+  },
+  "peerDependencies": {
+    "@angular/common": ">=4.0.0 <8.0.0",
+    "@angular/core": ">=4.0.0 <8.0.0"
+  }
+}
