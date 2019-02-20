@@ -1,19 +1,30 @@
 {
+  "compileOnSave": false,
   "compilerOptions": {
-    "declaration": true,
+    "baseUrl": "./",
+    "declaration": false,
+    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "inlineSources": true,
+    "importHelpers": true,
     "lib": [
-      "es2015",
+      "es2018",
       "dom"
     ],
     "module": "es2015",
     "moduleResolution": "node",
-    "noImplicitAny": true,
-    "skipLibCheck": true,
+    "outDir": "./dist/out-tsc",
+    "paths": {
+      "log4ngx": [
+        "dist/log4ngx"
+      ],
+      "log4ngx/*": [
+        "dist/log4ngx/*"
+      ]
+    },
     "sourceMap": true,
-    "stripInternal": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "target": "es5"
+    "target": "es5",
+    "typeRoots": [
+      "node_modules/@types"
+    ]
   }
 }
