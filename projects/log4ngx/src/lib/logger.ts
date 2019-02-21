@@ -10,42 +10,51 @@ export class Logger {
   public debug(messageOrException: string | Error): void;
   public debug(message: string, exception: Error): void;
   public debug(messageOrException: string | Error, exception?: Error): void {
-    this.log(Level.debug, messageOrException, exception);
+    this.dispatchLoggingEvent(Level.debug, messageOrException, exception);
   }
 
   public info(messageOrException: string | Error): void;
   public info(message: string, exception: Error): void;
   public info(messageOrException: string | Error, exception?: Error): void {
-    this.log(Level.info, messageOrException, exception);
+    this.dispatchLoggingEvent(Level.info, messageOrException, exception);
   }
 
   public warn(messageOrException: string | Error): void;
   public warn(message: string, exception: Error): void;
   public warn(messageOrException: string | Error, exception?: Error): void {
-    this.log(Level.warn, messageOrException, exception);
+    this.dispatchLoggingEvent(Level.warn, messageOrException, exception);
   }
 
   public error(messageOrException: string | Error): void;
   public error(message: string, exception: Error): void;
   public error(messageOrException: string | Error, exception?: Error): void {
-    this.log(Level.error, messageOrException, exception);
+    this.dispatchLoggingEvent(Level.error, messageOrException, exception);
   }
 
   public fatal(messageOrException: string | Error): void;
   public fatal(message: string, exception: Error): void;
   public fatal(messageOrException: string | Error, exception?: Error): void {
-    this.log(Level.fatal, messageOrException, exception);
+    this.dispatchLoggingEvent(Level.fatal, messageOrException, exception);
   }
 
-  private log(level: Level, messageOrException: string | Error, exception?: Error): void {
+  public log(levelName: string, messageOrException: string | Error): void;
+  public log(levelName: string, message: string, exception: Error): void;
+  public log(levelName: string, messageOrException: string | Error, exception?: Error): void {
+    const level: Level = Level.getLevel(levelName);
+    this.dispatchLoggingEvent(level, messageOrException, exception);
+  }
+
+  private dispatchLoggingEvent(level: Level, messageOrException: string | Error, exception?: Error): void {
+    let message: string;
+
     if (messageOrException instanceof Error) {
-      this.dispatchLoggingEvent(level, '', messageOrException);   /* Use empty string, otherwise 'null' or 'undefined' will be output */
+      message = '';      /* Use empty string, otherwise 'null' or 'undefined' will be output */
+      exception = messageOrException;
     } else {
-      this.dispatchLoggingEvent(level, messageOrException, exception);
+      message = messageOrException;
+      exception = exception;
     }
-  }
 
-  private dispatchLoggingEvent(level: Level, message: string, exception: Error): void {
     const loggingEvent: LoggingEvent = new LoggingEvent();
     loggingEvent.level = level;
     loggingEvent.loggerName = this.name;

@@ -10,7 +10,6 @@ const logServiceConfig: LogServiceConfig = {
     {
       name: 'consoleAppender',
       providerToken: consoleAppenderToken,
-// tslint:disable-next-line:max-line-length
       logFormat: 'ConsoleAppender: {date-iso} {level} {logger} {message}{exception}',
       exceptionFormat: null
     } as ConsoleAppenderConfig

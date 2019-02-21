@@ -39,25 +39,23 @@ module.exports = function (config) {
       // code of 1 if not running in watch mode
       thresholds: {
         emitWarning: false, // set to `true` to not fail the test command when thresholds are not met
-        // thresholds for all files
-        global: {
+        global: {   // Thresholds for all files
           statements: 100,
           lines: 100,
           branches: 100,
           functions: 100
-        // },
-        // // thresholds per file
-        // each: {
+        }
+        // each: {     // Thresholds per file
         //   statements: 100,
         //   lines: 100,
         //   branches: 100,
         //   functions: 100,
         //   overrides: {
-        //     'baz/component/<-------->**<-------->/<-------->*.js': {
-        //       statements: 98
+        //     'src/lib/foo.ts': {
+        //       statements: 100
         //     }
         //   }
-        }
+        // }
       },
       // verbose: true // output config used by istanbul for debugging
     },

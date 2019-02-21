@@ -40,6 +40,7 @@ export class ConsoleAppender extends Appender {
         break;
 
       default:
+        /* Shouldn't happen, but just in case... */
         this.consoleService.trace(message);
         break;
     }
