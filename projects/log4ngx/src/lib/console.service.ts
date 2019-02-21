@@ -23,9 +23,9 @@ export class ConsoleService {
   public error(message?: any, ...optionalParams: any[]): void {
     console.error(message, optionalParams);
     if (optionalParams.length === 0) {
-      console.debug(message);
+      console.error(message);
     } else {
-      console.debug(message, optionalParams);
+      console.error(message, optionalParams);
     }
   }
 

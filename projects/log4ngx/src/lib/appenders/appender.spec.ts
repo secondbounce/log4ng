@@ -40,13 +40,36 @@ describe('Base Appender', () => {
     });
   });
 
-  /* Note that we can't access the service's appenders directly to check its properties and methods;
-     the tests here can merely check that the output corresponds to the expected values.
-  */
+  describe('name property', () => {
+    it('should be stored correctly', () => {
+      const name: string = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz`1234567890-=[];\'#\\,./¬!"£$%^&*()_+{}:@~|<>?';
+      const config: AppenderConfig = {
+        name,
+        providerToken: mockAppenderToken,
+        logFormat: 'MockAppender',
+        exceptionFormat: null
+      };
+      const appender: MockAppender = new MockAppender();
+      appender.initialize(config);
+      expect(appender.name).toBe(name);
+    });
+  });
 
   describe('logFormat property', () => {
-    it('should render levels using displayName property',
-       inject([ Injector ], (injector: Injector) => {
+    it('should be stored correctly', () => {
+      const logFormat: string = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz`1234567890-=[];\'#\\,./¬!"£$%^&*()_+{}:@~|<>?';
+      const config: AppenderConfig = {
+        name: 'mockAppender',
+        providerToken: mockAppenderToken,
+        logFormat,
+        exceptionFormat: null
+      };
+      const appender: MockAppender = new MockAppender();
+      appender.initialize(config);
+      expect(appender.logFormat).toBe(logFormat);
+    });
+
+    it('should render levels using displayName property', inject([ Injector ], (injector: Injector) => {
       logServiceConfig.appenders[0].logFormat = '{level}';
       const logService: LogService = new LogService(injector, logServiceConfig);
       const log: Logger = logService.getLogger('MockAppenderTest-logFormat-level');
@@ -68,8 +91,7 @@ describe('Base Appender', () => {
       expect(MockAppender.lastOutput).toBe(Level.fatal.displayName);
     }));
 
-    it('should render logger using name property',
-       inject([ Injector ], (injector: Injector) => {
+    it('should render logger using name property', inject([ Injector ], (injector: Injector) => {
       logServiceConfig.appenders[0].logFormat = '{logger}';
       const logService: LogService = new LogService(injector, logServiceConfig);
       const log: Logger = logService.getLogger('MockAppenderTest-logFormat-logger');
@@ -78,8 +100,7 @@ describe('Base Appender', () => {
       expect(MockAppender.lastOutput).toBe(log.name);
     }));
 
-    it('should render message',
-       inject([ Injector ], (injector: Injector) => {
+    it('should render message', inject([ Injector ], (injector: Injector) => {
       logServiceConfig.appenders[0].logFormat = '{message}';
       const logService: LogService = new LogService(injector, logServiceConfig);
       const log: Logger = logService.getLogger('MockAppenderTest-logFormat-message');
@@ -101,8 +122,7 @@ describe('Base Appender', () => {
       expect(MockAppender.lastOutput).toBe('[null]');
     }));
 
-    it('should render timestamp as numeric value',
-       inject([ Injector ], (injector: Injector) => {
+    it('should render timestamp as numeric value', inject([ Injector ], (injector: Injector) => {
       logServiceConfig.appenders[0].logFormat = '{timestamp}';
       const logService: LogService = new LogService(injector, logServiceConfig);
       const log: Logger = logService.getLogger('MockAppenderTest-logFormat-timestamp');
@@ -114,8 +134,7 @@ describe('Base Appender', () => {
       expect(MockAppender.lastOutput).toMatch(new RegExp(pattern));
     }));
 
-    it('should render date/times in correct format',
-       inject([ Injector ], (injector: Injector) => {
+    it('should render date/times in correct format', inject([ Injector ], (injector: Injector) => {
       logServiceConfig.appenders[0].logFormat = '#{date}#{date-iso}#{date-short}#{datetime}#{time}#{date-utc}#';
       const logService: LogService = new LogService(injector, logServiceConfig);
       const log: Logger = logService.getLogger('MockAppenderTest-logFormat-datetimes');
@@ -141,8 +160,7 @@ describe('Base Appender', () => {
       expect(MockAppender.lastOutput).toMatch(new RegExp(pattern));
     }));
 
-    it('should render literal content and CR/LF',
-       inject([ Injector ], (injector: Injector) => {
+    it('should render literal content and CR/LF', inject([ Injector ], (injector: Injector) => {
       const line1: string = ' Line1 ';
       const line2: string = ' Line2 ';
       const line3: string = ' Line3 ';
@@ -155,8 +173,7 @@ describe('Base Appender', () => {
       expect(MockAppender.lastOutput).toBe(result);
     }));
 
-    it('should ignore exception if not specified in logFormat',
-       inject([ Injector ], (injector: Injector) => {
+    it('should ignore exception if not specified in logFormat', inject([ Injector ], (injector: Injector) => {
       logServiceConfig.appenders[0].logFormat = '{message}';
       const logService: LogService = new LogService(injector, logServiceConfig);
       const log: Logger = logService.getLogger('MockAppenderTest-logFormat-exception');
@@ -174,8 +191,20 @@ describe('Base Appender', () => {
   });
 
   describe('exceptionFormat property', () => {
-    it('uses default value if set to null',
-       inject([ Injector ], (injector: Injector) => {
+    it('should be stored correctly', () => {
+      const exceptionFormat: string = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz`1234567890-=[];\'#\\,./¬!"£$%^&*()_+{}:@~|<>?';
+      const config: AppenderConfig = {
+        name: 'mockAppender',
+        providerToken: mockAppenderToken,
+        logFormat: 'MockAppender',
+        exceptionFormat
+      };
+      const appender: MockAppender = new MockAppender();
+      appender.initialize(config);
+      expect(appender.exceptionFormat).toBe(exceptionFormat);
+    });
+
+    it('uses default value if set to null', inject([ Injector ], (injector: Injector) => {
       const appenderConfig: AppenderConfig = logServiceConfig.appenders[0];
       appenderConfig.logFormat = '{message} {exception}';
       appenderConfig.exceptionFormat = null;
@@ -198,8 +227,7 @@ describe('Base Appender', () => {
       expect(MockAppender.lastOutput).toMatch(new RegExp(pattern));
     }));
 
-    it('should render literal content and CR/LF',
-       inject([ Injector ], (injector: Injector) => {
+    it('should render literal content and CR/LF', inject([ Injector ], (injector: Injector) => {
       const appenderConfig: AppenderConfig = logServiceConfig.appenders[0];
       const line1: string = ' Line1 ';
       const line2: string = ' Line2 ';
@@ -220,8 +248,7 @@ describe('Base Appender', () => {
       expect(MockAppender.lastOutput).toBe(result);
     }));
 
-    it('should render the exception name',
-       inject([ Injector ], (injector: Injector) => {
+    it('should render the exception name', inject([ Injector ], (injector: Injector) => {
       const appenderConfig: AppenderConfig = logServiceConfig.appenders[0];
       appenderConfig.logFormat = '{exception}';
       appenderConfig.exceptionFormat = '{exception-name}';
@@ -240,8 +267,7 @@ describe('Base Appender', () => {
       expect(MockAppender.lastOutput).toBe(result);
     }));
 
-    it('should render the exception message',
-       inject([ Injector ], (injector: Injector) => {
+    it('should render the exception message', inject([ Injector ], (injector: Injector) => {
       const appenderConfig: AppenderConfig = logServiceConfig.appenders[0];
       appenderConfig.logFormat = '{exception}';
       appenderConfig.exceptionFormat = '{exception-message}';
@@ -289,8 +315,7 @@ describe('Base Appender', () => {
       expect(MockAppender.lastOutput).toBe('null');   /* Chrome converts null messages to the string 'null' */
     }));
 
-    it('should render the exception stack',
-       inject([ Injector ], (injector: Injector) => {
+    it('should render the exception stack', inject([ Injector ], (injector: Injector) => {
       const appenderConfig: AppenderConfig = logServiceConfig.appenders[0];
       appenderConfig.logFormat = '{exception}';
       appenderConfig.exceptionFormat = '{exception-stack}';
