@@ -3,10 +3,6 @@
   "version": "0.3.0",
   "description": "A Typescript logging framework for Angular projects",
   "author": "David Geary <david@secondbounce.com>",
-  "main": "./bundles/log4ngx.umd.js",
-  "module": "./esm5/log4ngx.js",
-  "es2015": "./esm2015/log4ngx.js",
-  "typings": "./log4ngx.d.ts",
   "license": "MIT",
   "repository": {
     "type": "git",
